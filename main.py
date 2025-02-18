@@ -33,6 +33,15 @@ async def on_message(message):
 
 
 @bot.command()
+async def test_channel(ctx):
+    channel = bot.get_channel(CHANNEL_ID)
+    if channel:
+        await ctx.send(f"✅ Le bot a bien trouvé le salon : {channel.name}")
+    else:
+        await ctx.send(f"❌ Erreur : Le bot ne trouve pas le salon ! Vérifie l'ID ({CHANNEL_ID}).")
+
+
+@bot.command()
 async def live_on(ctx):
     """Commande pour annoncer un live avec un beau message"""
     global live_message_id, mention_message_id
