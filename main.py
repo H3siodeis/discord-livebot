@@ -132,5 +132,20 @@ async def live_off(ctx):
         except discord.NotFound:
             print("❌ Notification @everyone introuvable.")
 
+from flask import Flask
+from threading import Thread
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run_web():
+    app.run(host="0.0.0.0", port=8000)
+
+# Lancer le serveur Web en parallèle du bot
+Thread(target=run_web).start()
+
 
 bot.run(TOKEN)
