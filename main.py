@@ -42,6 +42,18 @@ async def test_channel(ctx):
 
 
 @bot.command()
+async def test_channels(ctx):
+    guild = ctx.guild  # Récupère le serveur actuel
+    channels = guild.text_channels  # Liste des salons texte visibles par le bot
+
+    response = "📌 Salons accessibles par le bot :\n"
+    for ch in channels:
+        response += f"- {ch.name} (ID: {ch.id})\n"
+
+    await ctx.send(response)
+
+
+@bot.command()
 async def live_on(ctx):
     """Commande pour annoncer un live avec un beau message"""
     global live_message_id, mention_message_id
