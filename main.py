@@ -1,11 +1,8 @@
 import discord
 import os
 from discord.ext import commands
-from keep_alive import keep_alive
 
 import sys
-
-keep_alive()
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = os.getenv("CHANNEL_ID")
