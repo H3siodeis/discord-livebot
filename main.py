@@ -57,7 +57,11 @@ async def test_channels(ctx):
 async def live_on(ctx):
     """Commande pour annoncer un live avec un beau message"""
     global live_message_id, mention_message_id
-    channel = bot.get_channel(CHANNEL_ID)
+    try:
+        channel = await bot.fetch_channel(CHANNEL_ID)  # Utiliser fetch_channel
+    except discord.NotFound:
+        await ctx.send("❌ Erreur : Impossible de récupérer le salon !")
+        return
 
     # Vérification des permissions
     if not channel.permissions_for(channel.guild.me).embed_links:
@@ -113,7 +117,11 @@ async def live_on(ctx):
 async def live_off(ctx):
     """Commande pour signaler la fin du live et supprimer la notification"""
     global live_message_id, mention_message_id
-    channel = bot.get_channel(CHANNEL_ID)
+    try:
+        channel = await bot.fetch_channel(CHANNEL_ID)  # Utiliser fetch_channel
+    except discord.NotFound:
+        await ctx.send("❌ Erreur : Impossible de récupérer le salon !")
+        return
 
     # Création de l'embed pour la fin du live
     embed = discord.Embed(title="❌ **LIVE TERMINÉ**",
