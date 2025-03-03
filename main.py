@@ -8,7 +8,7 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = os.getenv("CHANNEL_ID")
 LIVE_URL = "https://www.tiktok.com/@zyrom71/live"
 live_message_id = os.getenv("LIVE_MESSAGE_ID")
-mention_message_id = None
+mention_message_id = os.getenv("MENTION_MESSAGE_ID")
 
 intents = discord.Intents.default()
 intents.messages = True
